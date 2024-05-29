@@ -12,3 +12,4 @@ class LinearRegression:
 
     def predict(self, df):
         return self.fitted_model.transform(df)
+ 
