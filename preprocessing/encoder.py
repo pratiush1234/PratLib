@@ -1,6 +1,8 @@
+## Module 1
 from pyspark.ml.feature import OneHotEncoder as SparkOneHotEncoder
-from pyspark.sql.functions import when
 from pyspark.ml.feature import StringIndexer
+from pyspark.sql.functions import when,col
+import warnings
 
 class OneHotEncoder:
     def __init__(self, **kwargs):
@@ -49,4 +51,14 @@ class map:
                 column_name,
                 when(df[column_name] == key, value).otherwise(df[column_name])
             )
+        return df
+        
+class Cast:
+    def __init__(self):
+        pass
+
+    def cast_col(self, df, feature, datatype):
+        df = df.withColumn(
+            feature, col(feature).cast(datatype) 
+        )
         return df
